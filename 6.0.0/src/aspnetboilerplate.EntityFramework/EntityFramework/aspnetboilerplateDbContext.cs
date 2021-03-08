@@ -1,16 +1,21 @@
 ﻿using System.Data.Common;
 using System.Data.Entity;
+using System.Threading.Tasks;
 using Abp.DynamicEntityProperties;
 using Abp.Zero.EntityFramework;
 using aspnetboilerplate.Authorization.Roles;
 using aspnetboilerplate.Authorization.Users;
 using aspnetboilerplate.MultiTenancy;
+using aspnetboilerplate.People;
 
 namespace aspnetboilerplate.EntityFramework
 {
     public class aspnetboilerplateDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
         //TODO: Define an IDbSet for your Entities...
+        public virtual IDbSet<Tasks.Task> Tasks { get; set; }
+
+        public virtual IDbSet<Person> People { get; set; }
 
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.
